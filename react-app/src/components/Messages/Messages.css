@@ -1,0 +1,132 @@
+.Messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.MessageList {
+  padding: 15px 50px;
+  flex: 1;
+  overflow-y: auto;
+  background: #DFE5EE;
+  display: flex;
+  flex-direction: column;
+}
+.Message {
+  margin: 7px 0;
+  max-width: 65%;
+}
+.Message .bubble {
+  padding: 7px 12px;
+  border-radius: 5px;
+  color: #555;
+  font-weight: 400;
+  font-size: 14px;
+  background: #fff;
+  box-shadow: 0 4px 7px rgba(0,0,0,.2);
+  transition: box-shadow .2s ease-in;
+  position: relative;
+  display: inline-block;
+}
+.Message .bubble:hover {
+  box-shadow: 0 2px 3px rgba(0,0,0,.2);
+}
+.Message .bubble::before {
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  left: -9px;
+  top: 0;
+  border: 9px solid black;
+  border-top-color: #fff;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+}
+.Message .bubble p {
+  user-select: text;
+}
+.Message .meta {
+  display: flex;
+  font-size: 9px;
+  margin-top: 2px;
+}
+.Message .name {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.Message .date {
+  font-weight: 400;
+  color: #888;
+  margin-left: auto;
+  padding-left: 15px;
+}
+
+.Message.me {
+  margin-left: auto;
+}
+.Message.me .bubble {
+  background: #06C9CB;
+  color: #fff;
+}
+.Message.me .bubble::before {
+  left: calc(100% - 9px);
+  border-top-color: #06C9CB;
+}
+.Message.me .name {
+  display: none;
+}
+.Message.me .date {
+  color: #fff;
+}
+
+.CreateMessage {
+  box-sizing: border-box;
+  height: 60px;
+}
+.CreateMessage form {
+  height: 100%;
+  width: 100%;
+  background: #efefef;
+  padding: 10px 25px;
+}
+.CreateMessage input {
+  padding: 10px 20px;
+  height: 100%;
+  width: 100%;
+  font-size: 15px;
+  border-radius: 25px;
+  background: #fff;
+  color: #444;
+}
+.CreateMessage input::placeholder {
+  color: rgba(0,0,0,.3);
+}
+
+/* RESPONSIVE WIDTHS */
+
+@media only screen and (max-width: 1000px) {
+  
+}
+@media only screen and (max-width: 700px) {
+  .Messages {
+    height: calc(100% - 100px);
+    position: relative;
+    z-index: -1;
+  }
+  .MessageList {
+    padding: 15px 30px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .Message {
+    margin: 7px 0;
+    max-width: 100%;
+  }
+}
+/* RESPONSIVE HEIGHTS */
+@media only screen and (max-height: 400px) {
+  
+}

@@ -1,0 +1,186 @@
+.Sidebar {
+  box-sizing: border-box;
+  width: 250px;
+  padding: 20px 40px;;
+  background: #fff;
+  box-shadow: 4px 0 4px rgba(0,0,0,.1);
+  /* z-index: 1; */
+  position: relative;
+  overflow: auto;
+}
+.Sidebar .heading {
+  margin: 20px 0;
+}
+.Sidebar .heading h2 {
+  font-size: 32px;
+  font-weight: 300;
+  text-align: center;
+  color: #888;
+}
+.Sidebar .heading h2 span {
+  font-weight: 600;
+  color: #444;
+}
+.Sidebar .heading .subtitle {
+  margin-top: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #444;
+}
+
+.sidebar-items {
+  overflow: auto;
+}
+
+.Sidebar .RoomList,
+.Sidebar .UserList {
+  margin-top: 10px;
+  overflow-y: auto;
+}
+.Sidebar .RoomList .rooms,
+.Sidebar .UserList .users {
+  max-height: 300px;
+}
+.Sidebar .RoomList h3,
+.Sidebar .UserList h3 {
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #888;
+}
+.Sidebar .RoomList .Room,
+.Sidebar .UserList .User {
+  margin: 7px 0;
+  padding-left: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  position: relative;
+}
+
+.Sidebar .mobile-button {
+  display: none;
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 5px;
+  box-shadow: 0 2px 2px rgba(64,64,64,.15);
+  transition: box-shadow .25s ease-in;
+  cursor: pointer;
+}
+.Sidebar .mobile-button:hover {
+  box-shadow: none;
+}
+.Sidebar #sidebar-toggle {
+  display: none;
+}
+.Sidebar .mobile-button .lines {
+  width: 50%;
+  height: 1px;
+  background: #777;
+  position: absolute;
+  transition: all .2s;
+}
+.Sidebar .mobile-button .lines:nth-child(1) {
+  left: 50%;
+  top: 33%;
+  transform: translate(-50%, -33%);
+}
+.Sidebar .mobile-button .lines:nth-child(2) {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.Sidebar .mobile-button .lines:nth-child(3) {
+  left: 50%;
+  top: 67%;
+  transform: translate(-50%, -67%);
+}
+
+.Sidebar #sidebar-toggle:checked ~ .mobile-button .lines:nth-child(1) {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+.Sidebar #sidebar-toggle:checked ~ .mobile-button .lines:nth-child(2) {
+  display: none;
+}
+.Sidebar #sidebar-toggle:checked ~ .mobile-button .lines:nth-child(3) {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+/* RESPONSIVE WIDTHS */
+@media only screen and (max-width: 1000px) {
+  .Sidebar .heading {
+    margin: 10px 0;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .Sidebar {
+    /* display: none; */
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    padding: 10px 30px;
+    box-shadow: 0 4px 4px rgba(0,0,0,.1);
+  }
+  .Sidebar .mobile-button {
+    display: block;
+  }
+  .Sidebar .heading {
+    margin: 0;
+  }
+  .Sidebar .heading h2 {
+    font-size: 28px;
+  }
+  .Sidebar .heading .subtitle {
+    font-size: 10px;
+  }
+  .sidebar-items {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    padding: 15px;
+    margin-left: -250px;
+    width: 200px;
+    background: #fff;
+    box-shadow: 4px 0 4px rgba(0,0,0,.1);
+    transition: margin .5s ease-in-out;
+  }
+  .Sidebar #sidebar-toggle:checked ~ .sidebar-items {
+    margin-left: 0;
+  }
+  /* .Sidebar .RoomList,
+  .Sidebar .UserList {
+    margin-top: 5px;
+  } */
+}
+@media only screen and (max-width: 450px) {
+  .Sidebar {
+    height: 50px;
+    padding: 5px 20px;
+  }
+  .Sidebar .mobile-button {
+    height: 30px;
+    width: 30px;
+  }
+  .Sidebar .heading h2 {
+    text-align: right;
+  }
+  .Sidebar .heading .subtitle {
+    display: none;
+  }
+  .Sidebar .sidebar-items {
+    top: 50px;
+  }
+}
+
+/* RESPONSIVE HEIGHTS */
+@media only screen and (max-height: 400px) {
+  
+}
