@@ -36,7 +36,21 @@ class App extends Component {
       rooms: payload.rooms,
     }, () => localStorage.username = this.state.username));
 
-    socket.on('usersChanged', (users) => this.setState({ users }));
+    socket.on('usersChanged', (users) => {
+      if (!users) return;
+
+      let lookup = {};
+      let uniqueUsers = [];
+
+      users.forEach((user) => {
+        if (!lookup[user.name]) {
+          lookup[user.name] = true;
+          uniqueUsers.push(user);
+        }
+      });
+
+      this.setState({ users: uniqueUsers });
+    });
 
     // ----- MESSAGES -----    
     socket.on('messageCreated', (message) => this.setState((state) => ({ 

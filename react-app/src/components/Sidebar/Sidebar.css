@@ -119,7 +119,7 @@
     margin: 10px 0;
   }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   .Sidebar {
     /* display: none; */
     width: 100%;
@@ -181,6 +181,6 @@
 }
 
 /* RESPONSIVE HEIGHTS */
-@media only screen and (max-height: 400px) {
+@media only screen and (max-height: 600px) {
   
 }

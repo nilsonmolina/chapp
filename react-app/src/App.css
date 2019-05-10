@@ -25,7 +25,7 @@
     width: 700px;
   }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   .App {
     position: fixed;
     top: 0;
@@ -42,7 +42,7 @@
 }
 
 /* RESPONSIVE HEIGHTS */
-@media only screen and (max-height: 400px) {
+@media only screen and (max-height: 600px) {
   .App {
     position: fixed;
     top: 0;

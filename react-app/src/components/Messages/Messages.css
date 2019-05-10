@@ -110,7 +110,7 @@
 @media only screen and (max-width: 1000px) {
   
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   .Messages {
     height: calc(100% - 100px);
     position: relative;
@@ -127,6 +127,6 @@
   }
 }
 /* RESPONSIVE HEIGHTS */
-@media only screen and (max-height: 400px) {
+@media only screen and (max-height: 600px) {
   
 }

@@ -32,10 +32,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(225deg,
-    var(--primary-color) 0%, var(--primary-color) 30%,
-    #DDE5EE 30%, #DDE5EE 75%,
-    #F5F7FA 75%, #F5F7FA 100%
+  background-image: linear-gradient(90deg,
+    var(--primary-color) 0%, var(--primary-color) 50%,
+    #DDE5EE 50%, #DDE5EE 100%
   );
   overflow-y: hidden;
 }
@@ -48,11 +47,17 @@ input:focus {
   border-bottom: none;
 }
 
+
+/* FIXES LONG WORDS (LIKE URLS) BREAKING MESSAGE BUBBLES */
+p {
+  word-break: break-all;
+}
+
 /* FIXES WEIRD SAFARI GLITCH */
 input { -webkit-user-select: text; }
 
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   body {
     background-image: none;
   }

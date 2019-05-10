@@ -87,16 +87,16 @@ io.on('connection', (socket) => {
     debug(`USER DISCONNECTED: ${socket.id}`);
     debug(users);
 
-    io.emit('usersChanged', users);
+    io.emit('usersChanged', redisClient.S);
   });
 
 
   // HELPER FUNCTIONS
   async function login(currSocket, user) {
-    if (users.find(u => u.name === user.username)) {
-      socket.emit('usernameTaken', `"${user.username}" already logged in.`);
-      return;
-    }
+    // if (users.find(u => u.name === user.username)) {
+    //   socket.emit('usernameTaken', `"${user.username}" already logged in.`);
+    //   return;
+    // }
 
     users.push({ socketId: currSocket.id, name: user.username, id: user.id });
     debug(`NEW USER: ${user.username} - ${currSocket.id}`);
