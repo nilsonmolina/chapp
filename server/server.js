@@ -1,5 +1,8 @@
 const debug = require('debug')('server');
+const redis = require('redis');
+const socketRedis = require('socket.io-redis');
 const socketio = require('socket.io');
+const bcrypt = require('bcrypt');
 const express = require('express');
 
 const usersDB = require('./models/users');
@@ -18,6 +21,16 @@ app.get('/api/headers', (req, res) => {
 // START SERVER
 const server = app.listen(port, '127.0.0.1', () => console.log(`Listening on port ${port}...`));
 const io = socketio.listen(server);
+const redisClient = redis.createClient();
+
+io.adapter(socketRedis({ host: 'localhost', port: 6379 }));
+
+// REDIS CONNECTION EVENTS
+redisClient.on('connect', () => debug('Redis client connected'));
+
+redisClient.on('error', (err) => {
+  debug(`Something went wrong ${err}`);
+});
 
 // WEBSOCKET CALLS
 const users = [];
@@ -25,8 +38,13 @@ io.on('connection', (socket) => {
   debug(`Client connected - ${socket.id}`);
 
   socket.on('tryLogin', async (payload) => {
-    const user = await usersDB.authenticate(payload.username, payload.password);
+    const user = await usersDB.getByUsername(payload.username);
     if (!user) {
+      socket.emit('incorrectLogin', 'Wrong username or password');
+      return;
+    }
+    const match = await bcrypt.compare(payload.password, user.password);
+    if (!match) {
       socket.emit('incorrectLogin', 'Wrong username or password');
       return;
     }
@@ -35,14 +53,18 @@ io.on('connection', (socket) => {
   });
 
   socket.on('trySignup', async (payload) => {
-    let user = await usersDB.getByUsername(payload.username);
-    if (user) {
-      socket.emit('usernameTaken', `"${payload.username}" already taken.`);
-      return;
-    }
+    try {
+      let user = await usersDB.getByUsername(payload.username);
+      if (user) {
+        socket.emit('usernameTaken', `"${payload.username}" already taken.`);
+        return;
+      }
 
-    user = await usersDB.createNew(payload.username, payload.password);
-    await login(socket, user);
+      const hash = await bcrypt.hash(payload.password, 10);
+
+      user = await usersDB.createNew(payload.username, hash);
+      await login(socket, user);
+    } catch (e) { socket.emit('incorrectLogin', 'Server Error!'); }
   });
 
   socket.on('createMessage', async (payload) => {
@@ -69,6 +91,7 @@ io.on('connection', (socket) => {
   });
 
 
+  // HELPER FUNCTIONS
   async function login(currSocket, user) {
     if (users.find(u => u.name === user.username)) {
       socket.emit('usernameTaken', `"${user.username}" already logged in.`);
@@ -85,4 +108,6 @@ io.on('connection', (socket) => {
 
     io.emit('usersChanged', users);
   }
+
+  // REDIS FUNCTIONS
 });
