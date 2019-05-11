@@ -1,5 +1,5 @@
 const debug = require('debug')('server');
-const redis = require('redis');
+const Redis = require('ioredis');
 const socketRedis = require('socket.io-redis');
 const socketio = require('socket.io');
 const bcrypt = require('bcrypt');
@@ -21,19 +21,18 @@ app.get('/api/headers', (req, res) => {
 // START SERVER
 const server = app.listen(port, '127.0.0.1', () => console.log(`Listening on port ${port}...`));
 const io = socketio.listen(server);
-const redisClient = redis.createClient();
+const redis = new Redis();
 
 io.adapter(socketRedis({ host: 'localhost', port: 6379 }));
 
 // REDIS CONNECTION EVENTS
-redisClient.on('connect', () => debug('Redis client connected'));
+redis.on('connect', () => debug('Redis client connected'));
 
-redisClient.on('error', (err) => {
+redis.on('error', (err) => {
   debug(`Something went wrong ${err}`);
 });
 
 // WEBSOCKET CALLS
-const users = [];
 io.on('connection', (socket) => {
   debug(`Client connected - ${socket.id}`);
 
@@ -68,46 +67,67 @@ io.on('connection', (socket) => {
   });
 
   socket.on('createMessage', async (payload) => {
-    const user = users.find(u => u.socketId === socket.id);
-    if (!user) return;
+    try {
+      let users = await redis.get('users');
+      users = JSON.parse(users);
 
-    const message = { userId: user.id, roomId: payload.roomId, body: payload.body };
-    debug(message);
-    const newMessage = await messagesDB.createNew(message);
-    newMessage.username = user.name;
+      const user = users.find(u => u.socketId === socket.id);
+      if (!user) return;
 
-    io.emit('messageCreated', newMessage);
+      const message = { userId: user.id, roomId: payload.roomId, body: payload.body };
+      debug(message);
+      const newMessage = await messagesDB.createNew(message);
+      newMessage.username = user.name;
+
+      io.emit('messageCreated', newMessage);
+    } catch (e) {
+      debug(e);
+      socket.emit('incorrectLogin', 'Server Error!');
+    }
   });
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', async () => {
     debug(`Client disconnected - ${socket.id}`);
+    try {
+      let users = await redis.get('users');
+      users = JSON.parse(users);
 
-    const userIndex = users.findIndex(u => u.socketId === socket.id);
-    if (userIndex > -1) users.splice(userIndex, 1);
-    debug(`USER DISCONNECTED: ${socket.id}`);
-    debug(users);
+      const userIndex = users.findIndex(u => u.socketId === socket.id);
+      if (userIndex > -1) {
+        users.splice(userIndex, 1);
+        await redis.set('users', JSON.stringify(users));
+      }
+      debug(`USER DISCONNECTED: ${socket.id}`);
+      debug(users);
 
-    io.emit('usersChanged', redisClient.S);
+      io.emit('usersChanged', users);
+    } catch (e) {
+      debug(e);
+      socket.emit('incorrectLogin', 'Server Error!');
+    }
   });
 
 
   // HELPER FUNCTIONS
   async function login(currSocket, user) {
-    // if (users.find(u => u.name === user.username)) {
-    //   socket.emit('usernameTaken', `"${user.username}" already logged in.`);
-    //   return;
-    // }
+    try {
+      let users = await redis.get('users');
+      users = JSON.parse(users);
+      if (!users) users = [];
 
-    users.push({ socketId: currSocket.id, name: user.username, id: user.id });
-    debug(`NEW USER: ${user.username} - ${currSocket.id}`);
-    debug(users);
+      users.push({ socketId: currSocket.id, name: user.username, id: user.id });
+      await redis.set('users', JSON.stringify(users));
+      debug(`NEW USER: ${user.username} - ${currSocket.id}`);
+      debug(users);
 
-    const rooms = await roomsDB.getByUserId(user.id);
-    const messages = await messagesDB.getAll();
-    currSocket.emit('usernameAccepted', { username: user.username, messages, rooms });
+      const rooms = await roomsDB.getByUserId(user.id);
+      const messages = await messagesDB.getAll();
+      currSocket.emit('usernameAccepted', { username: user.username, messages, rooms });
 
-    io.emit('usersChanged', users);
+      io.emit('usersChanged', users);
+    } catch (e) {
+      debug(e);
+      socket.emit('incorrectLogin', 'Server Error!');
+    }
   }
-
-  // REDIS FUNCTIONS
 });

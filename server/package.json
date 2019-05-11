@@ -13,9 +13,9 @@
     "bcrypt": "^3.0.4",
     "debug": "^4.1.1",
     "express": "^4.16.4",
+    "ioredis": "^4.9.3",
     "morgan": "^1.9.1",
     "pg": "^7.8.0",
-    "redis": "^2.8.0",
     "socket.io": "^2.2.0",
     "socket.io-redis": "^5.2.0"
   }

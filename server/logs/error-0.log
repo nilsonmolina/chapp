@@ -47,3 +47,50 @@ TypeError: Cannot destructure property `rows` of 'undefined' or 'null'.
     at Object.getByUsername (/Users/nilsonmolina/projects/chapp/server/models/users.js:24:22)
     at process._tickCallback (internal/process/next_tick.js:68:7)
 (node:13956) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
+TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1185) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1185) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
+(node:1185) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+(node:1185) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1185) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
+(node:1185) UnhandledPromiseRejectionWarning: TypeError: users.findIndex is not a function
+    at Socket.socket.on (/Users/nilsonmolina/projects/chapp/server/server.js:91:29)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+(node:1185) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
+(node:1185) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1185) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 9)
+(node:1185) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1185) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 11)
+(node:1185) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1185) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 13)
+TypeError: users.findIndex is not a function
+    at Socket.socket.on (/Users/nilsonmolina/projects/chapp/server/server.js:91:29)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+(node:1364) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1364) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
+(node:1364) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+(node:1364) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1364) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
+(node:1364) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1364) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
+(node:1364) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1364) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 9)
+(node:1364) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1364) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 11)
+(node:1364) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1364) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 13)
+(node:1364) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
+    at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
+(node:1364) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 15)
