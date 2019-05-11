@@ -1,19 +1,39 @@
 module.exports = {
   apps: [{
-    name: 'chapp',
+    name: 'chapp-1',
     script: 'server.js',
     instance_var: 'INSTANCE_ID',
     instances: 1,
     autorestart: true,
     max_memory_restart: '300M',
     watch: false,
-    output: './logs/output.log',
-    error: './logs/error.log',
+    output: './logs/output-1.log',
+    error: './logs/error-1.log',
     env: {
-      NODE_ENV: 'development',
-    },
-    env_production: {
       NODE_ENV: 'production',
+      PORT: 5000,
+    },
+    env_development: {
+      NODE_ENV: 'development',
+      PORT: 5000,
+    },
+  }, {
+    name: 'chapp-2',
+    script: 'server.js',
+    instance_var: 'INSTANCE_ID',
+    instances: 1,
+    autorestart: true,
+    max_memory_restart: '300M',
+    watch: false,
+    output: './logs/output-2.log',
+    error: './logs/error-2.log',
+    env: {
+      NODE_ENV: 'production',
+      PORT: 5001,
+    },
+    env_development: {
+      NODE_ENV: 'development',
+      PORT: 5001,
     },
   }],
 };

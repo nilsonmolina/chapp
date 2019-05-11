@@ -94,3 +94,5 @@ TypeError: users.findIndex is not a function
 (node:1364) UnhandledPromiseRejectionWarning: TypeError: users.push is not a function
     at login (/Users/nilsonmolina/projects/chapp/server/server.js:112:11)
 (node:1364) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 15)
+2019-05-11T05:39:07.321Z server Redis client connected
+2019-05-11T05:47:46.343Z server Redis client connected

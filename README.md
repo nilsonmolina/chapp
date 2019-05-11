@@ -1,5 +1,5 @@
 # Chapp
-**Site:** [http://www.chapp.ml](http://www.chapp.ml)  
+**Site:** [https://www.chapp.ml](https://www.chapp.ml)  
 
 Chapp is a chat application utilizing websockets for realtime communications. Chapp was built
 with React in the frontend and NodeJs/ExpressJS in the backend.  The backend server is hosted on 
