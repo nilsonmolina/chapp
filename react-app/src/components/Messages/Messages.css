@@ -12,7 +12,7 @@
   flex-direction: column;
 }
 .Message {
-  margin: 7px 0;
+  margin: 4px 0;
   max-width: 65%;
 }
 .Message .bubble {
@@ -22,13 +22,13 @@
   font-weight: 400;
   font-size: 14px;
   background: #fff;
-  box-shadow: 0 4px 7px rgba(0,0,0,.2);
+  box-shadow: 0 2px 4px rgba(0,0,0,.2);
   transition: box-shadow .2s ease-in;
   position: relative;
   display: inline-block;
 }
 .Message .bubble:hover {
-  box-shadow: 0 2px 3px rgba(0,0,0,.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,.2);
 }
 .Message .bubble::before {
   content: "";
