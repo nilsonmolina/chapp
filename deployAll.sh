@@ -19,7 +19,7 @@ rm chapp.tar.gz
 mv ../react-app/src/App.js-e ../react-app/src/App.js
 
 ssh -i $AWS_KEY_PATH $HOST_SERVER_USER@$HOST_SERVER_IP << 'ENDSSH'
-pm2 delete all
+pm2 delete /chapp*/
 rm -rf chapp
 mkdir chapp
 tar xf chapp.tar.gz -C chapp

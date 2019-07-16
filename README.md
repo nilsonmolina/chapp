@@ -11,3 +11,10 @@ undertook to get hands on practice on all the stages of the development process.
 may seem a bit simple, the process of setting up a microservices architecture is quite complex and 
 it was a very interesting challenge for me to solve. Also, working with websockets posed a few
 challenges compared with a basic REST API, especially when using a reverse proxy.
+
+
+## Redis
+
+
+## Nginx
+
